@@ -93,4 +93,21 @@ S1# show running-config
 !Y la contraseña "password" que se activo sin encriptacion ahora lo esta pero marca que "no se creo encriptada"
 
 
+!Configurando un aviso de MOTD (mensaje del dia)
+!Cisco IOS permite configurar los mensajes que cualquier persona puede ver al iniciar sesion en el switch: MOTD
+
+S1# config t
+S1(config)# banner motd "This is a secure system. Authorized Access Only!"
+S1(config)# exit
+S1#
+
+
+!Guardando archivos de configuracion en NVRAM
+!La configuracion basica del switch se puede hacer una copia de seguridad a NVRAM.
+!Se hace para que los cambios hechos no se pierdan luego de apagar o reiniciar
+
+S1# copy running-config startup-config
+Destination filename [startup-config]?[Enter] 
+Building configuration...
+[OK]
 

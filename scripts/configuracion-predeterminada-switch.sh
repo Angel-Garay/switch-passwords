@@ -108,3 +108,35 @@
 	Building configuration...
 	[OK]
 
+
+#Activando una vlan1 que tiene IP pero esta DOWN
+# show ip interface brief
+# Aca nos indica al final si tiene IP y su estado DOWN
+
+S1# configure terminal
+S1(config)# interface vlan 1
+S1(config-if)# no shutdown
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+[ENTER]
+S1# exit
+[ENTER]
+
+S1# show ip interface brief
+#Aca abajo deberia cambiar de estado down a "UP"
+
+
+#Agregando una IP a vlan1 y luego activando tambien para que sea "UP"
+# ip address 192.168.1.3 255.255.255.0
+# Aca nos indica al final que no tiene IP y su estado DOWN
+
+S2# configure terminal
+S2(config)# interface vlan 1
+S2(config-if)# ip address 192.168.1.3 255.255.255.0
+S2(config-if)# no shutdown
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+[ENTER]
+exit
+[ENTER]
+
+S2# show ip interface brief
+#Ahora deberia tener IP asignada y estado UP
